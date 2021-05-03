@@ -54,12 +54,16 @@ export default function Home() {
                         </CustomLink>
                         <p className='text-sm '>
                             Try to directly go to{' '}
-                            <CustomLink href='http://localhost:3000/blocked'>
-                                localhost:3000/blocked
+                            <CustomLink
+                                href={`${window.location.origin}/blocked`}
+                            >
+                                {window.location.origin}/blocked
                             </CustomLink>{' '}
                             or{' '}
-                            <CustomLink href='http://localhost:3000/blocked-component'>
-                                localhost:3000/blocked-component
+                            <CustomLink
+                                href={`${window.location.origin}/blocked-component`}
+                            >
+                                {window.location.origin}/blocked-component
                             </CustomLink>
                         </p>
                     </div>
