@@ -3,9 +3,8 @@ import { useRouter } from 'next/router';
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-    const { pathname, events } = useRouter();
     const [user, setUser] = useState({
-        error: 'ini ceritanya gaada user di context',
+        error: 'you are logged out, and there is no user object',
     });
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -31,32 +30,8 @@ function AuthProvider({ children }) {
 
     function logout() {
         setIsAuthenticated(false);
-        setUser({ error: 'ini ceritanya gaada user di context' });
+        setUser({ error: 'you are logged out, and there is no user object' });
     }
-
-    // useEffect(() => {
-    //     getUser();
-    // }, [pathname]);
-
-    // useEffect(() => {
-    //     // Check that a new route is OK
-    //     const handleRouteChange = (url) => {
-    //         if (url !== '/' && !user) {
-    //             window.location.href = '/';
-    //         }
-    //     };
-
-    //     // Check that initial route is OK
-    //     if (pathname !== '/' && user === null) {
-    //         window.location.href = '/';
-    //     }
-
-    //     // Monitor routes
-    //     events.on('routeChangeStart', handleRouteChange);
-    //     return () => {
-    //         events.off('routeChangeStart', handleRouteChange);
-    //     };
-    // }, [user]);
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
