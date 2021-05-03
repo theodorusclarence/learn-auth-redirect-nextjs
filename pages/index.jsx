@@ -1,9 +1,20 @@
+import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
-import CustomLink from '@/components/CustomLink';
+
 import { useAuth } from '@/contexts/auth';
+import CustomLink from '@/components/CustomLink';
 
 export default function Home() {
     const { user, logout, login, isAuthenticated } = useAuth();
+    const [originLocation, setOriginLocation] = useState(
+        'http://localhost:3000'
+    );
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setOriginLocation(window.location.origin);
+        }
+    }, []);
 
     return (
         <>
@@ -54,16 +65,16 @@ export default function Home() {
                         </CustomLink>
                         <p className='text-sm '>
                             Try to directly go to{' '}
-                            <CustomLink
-                                href={`${window.location.origin}/blocked`}
-                            >
-                                {window.location.origin}/blocked
+                            <CustomLink href={`${originLocation}/blocked`}>
+                                {originLocation}
+                                /blocked
                             </CustomLink>{' '}
                             or{' '}
                             <CustomLink
-                                href={`${window.location.origin}/blocked-component`}
+                                href={`${originLocation}/blocked-component`}
                             >
-                                {window.location.origin}/blocked-component
+                                {originLocation}
+                                /blocked-component
                             </CustomLink>
                         </p>
                     </div>
