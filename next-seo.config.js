@@ -1,6 +1,6 @@
-const title = 'Next.js Tailwind Starter';
+const title = 'Learn Next.js Auth Redirect';
 const description =
-    'A template for Next.js and Tailwindcss by Theodorus Clarence';
+    'Attempt to learn how to redirect Next.js protected page without flashing content';
 
 const SEO = {
     title,
