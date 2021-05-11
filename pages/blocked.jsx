@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/contexts/auth';
+import FullPageLoader from '@/components/FullPageLoader';
 
 export default function blocked() {
     const router = useRouter();
@@ -14,11 +15,7 @@ export default function blocked() {
     });
 
     if (!isAuthenticated) {
-        return (
-            <div className='flex items-center justify-center min-h-screen'>
-                <h1 className='animate-spin'>Full Page Loader</h1>
-            </div>
-        );
+        return <FullPageLoader />;
     }
 
     return (

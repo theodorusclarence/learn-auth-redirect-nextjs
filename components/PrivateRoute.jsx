@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { useAuth } from '@/contexts/auth';
+import FullPageLoader from './FullPageLoader';
 
 export default function PrivateRoute({ protectedRoutes, children }) {
     const router = useRouter();
@@ -16,11 +17,7 @@ export default function PrivateRoute({ protectedRoutes, children }) {
     });
 
     if (!isAuthenticated && pathIsProtected) {
-        return (
-            <div className='flex items-center justify-center min-h-screen'>
-                <h1 className='animate-spin'>Full Page Loader</h1>
-            </div>
-        );
+        return <FullPageLoader />;
     }
 
     return children;
