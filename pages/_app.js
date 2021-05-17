@@ -5,10 +5,13 @@ import { AuthProvider } from '@/contexts/auth';
 import PrivateRoute from '@/components/PrivateRoute';
 
 function MyApp({ Component, pageProps }) {
+    // Add your protected routes here
+    const protectedRoutes = ['/blocked-component'];
+
     return (
         <>
             <AuthProvider>
-                <PrivateRoute protectedRoutes={['/blocked-component']}>
+                <PrivateRoute protectedRoutes={protectedRoutes}>
                     <DefaultSeo {...SEO} />
                     <Component {...pageProps} />
                 </PrivateRoute>

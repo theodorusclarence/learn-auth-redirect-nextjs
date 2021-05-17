@@ -12,9 +12,10 @@ export default function PrivateRoute({ protectedRoutes, children }) {
 
     useEffect(() => {
         if (!isAuthenticated && pathIsProtected) {
+            // Redirect route, you can point this to /login
             router.push('/');
         }
-    });
+    }, []);
 
     if (!isAuthenticated && pathIsProtected) {
         return <FullPageLoader />;
