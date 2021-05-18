@@ -12,7 +12,7 @@ export default function blocked() {
         if (!isAuthenticated) {
             router.push('/');
         }
-    });
+    }, []);
 
     if (!isAuthenticated) {
         return <FullPageLoader />;
