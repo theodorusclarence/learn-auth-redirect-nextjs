@@ -42,7 +42,7 @@ export default function Home() {
                             href='https://theodorusclarence/blog/nextjs-redirect-no-flashing'
                             className='mx-auto max-w-prose'
                         >
-                            Check out the blog post about this
+                            Check out this blog post for explanation
                         </CustomLink>
                         <pre>
                             {JSON.stringify({ isAuthenticated }, null, 2)}
@@ -53,7 +53,7 @@ export default function Home() {
                                 className='mt-8 underline'
                                 onClick={() => logout()}
                             >
-                                logout button
+                                logout & remove token
                             </button>
                         ) : (
                             <button
@@ -69,10 +69,10 @@ export default function Home() {
                                 considered logged in even in a new tab
                             </p>
                             <button className='underline' onClick={addToken}>
-                                Add Token on Local Storage
+                                Add Token to Local Storage
                             </button>
                             <button className='underline' onClick={logout}>
-                                Remove Token on Local Storage
+                                Remove Token to Local Storage
                             </button>
                         </div>
                         <p className='!mt-12 text-lg text-blue-900 '>

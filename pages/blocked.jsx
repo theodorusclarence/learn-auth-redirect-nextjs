@@ -24,7 +24,7 @@ export default function blocked() {
             <p>This page did the auth checking directly on the page file.</p>
             <pre>{JSON.stringify({ isAuthenticated }, null, 2)}</pre>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-            <button onClick={() => logout()}>logout</button>
+            <button onClick={() => logout()}>logout & remove token</button>
         </div>
     );
 }

@@ -13,12 +13,13 @@ function AuthProvider({ children }) {
         const token = localStorage.getItem('token');
         console.log('token: ', token);
         if (!(token === null || token === undefined)) {
-            loginWithToken;
+            loginWithToken();
         }
         setIsLoading(false);
     }, []);
 
     function loginWithToken() {
+        localStorage.setItem('token', 'true');
         setIsAuthenticated(true);
         setUser({
             name: 'hello',
@@ -27,7 +28,10 @@ function AuthProvider({ children }) {
     }
     function login() {
         setIsAuthenticated(true);
-        setUser({ name: 'hello', msg: 'Logged in by clicking login button' });
+        setUser({
+            name: 'hello',
+            msg: 'Logged in by clicking login button, you still have no token',
+        });
     }
 
     function logout() {

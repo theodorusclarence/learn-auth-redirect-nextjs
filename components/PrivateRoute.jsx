@@ -17,7 +17,7 @@ export default function PrivateRoute({ protectedRoutes, children }) {
         }
     }, [isLoading, isAuthenticated, pathIsProtected]);
 
-    if (isLoading || (!isAuthenticated && pathIsProtected)) {
+    if ((isLoading || !isAuthenticated) && pathIsProtected) {
         return <FullPageLoader />;
     }
 

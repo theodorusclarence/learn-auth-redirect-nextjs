@@ -9,7 +9,7 @@ export default function blockedComponent() {
             <p>This page did the auth checking on PrivateRoute component.</p>
             <pre>{JSON.stringify({ isAuthenticated }, null, 2)}</pre>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-            <button onClick={() => logout()}>logout</button>
+            <button onClick={() => logout()}>logout & remove token</button>
         </div>
     );
 }
