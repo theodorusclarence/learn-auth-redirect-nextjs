@@ -4,37 +4,51 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState({
-        error: 'you are logged out, and there is no user object',
+        error: 'you are logged out, and there is no user object, and no token',
     });
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
-    async function getUser() {
-        try {
-            //   const response = await fetch('/api/me')/
-            //   const profile = await response.json()
-            // const profile = { name: 'hello' };
-            if (user.error) {
-                setUser(null);
-            } else {
-                setUser(user);
-            }
-        } catch (err) {
-            console.error(err);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        console.log('token: ', token);
+        if (!(token === null || token === undefined)) {
+            loginWithToken;
         }
-    }
+        setIsLoading(false);
+    }, []);
 
+    function loginWithToken() {
+        setIsAuthenticated(true);
+        setUser({
+            name: 'hello',
+            msg: 'Logged in because token in localStorage',
+        });
+    }
     function login() {
         setIsAuthenticated(true);
-        setUser({ name: 'hello' });
+        setUser({ name: 'hello', msg: 'Logged in by clicking login button' });
     }
 
     function logout() {
         setIsAuthenticated(false);
-        setUser({ error: 'you are logged out, and there is no user object' });
+        setUser({
+            error: 'you are logged out, and there is no user object, and no token',
+        });
+        localStorage.removeItem('token');
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+        <AuthContext.Provider
+            value={{
+                isAuthenticated,
+                user,
+                login,
+                logout,
+                loginWithToken,
+                isLoading,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );

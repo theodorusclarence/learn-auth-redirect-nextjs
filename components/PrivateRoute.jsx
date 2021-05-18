@@ -6,18 +6,18 @@ import FullPageLoader from './FullPageLoader';
 
 export default function PrivateRoute({ protectedRoutes, children }) {
     const router = useRouter();
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, isLoading } = useAuth();
 
     const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1;
 
     useEffect(() => {
-        if (!isAuthenticated && pathIsProtected) {
+        if (!isLoading && !isAuthenticated && pathIsProtected) {
             // Redirect route, you can point this to /login
             router.push('/');
         }
-    }, []);
+    }, [isLoading, isAuthenticated, pathIsProtected]);
 
-    if (!isAuthenticated && pathIsProtected) {
+    if (isLoading || (!isAuthenticated && pathIsProtected)) {
         return <FullPageLoader />;
     }
 
